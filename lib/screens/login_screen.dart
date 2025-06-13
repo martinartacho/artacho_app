@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:hartacho_app/screens/dashboard_screen.dart';
-import 'package:hartacho_app/services/auth_service.dart';
+import 'package:artacho_app/screens/dashboard_screen.dart';
+import 'package:artacho_app/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

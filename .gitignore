@@ -44,6 +44,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+build_*.bat
+
 # Archivos secretos o de entorno
 .env
 .env.*

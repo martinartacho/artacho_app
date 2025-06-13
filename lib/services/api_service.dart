@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hartacho_app/core/config.dart';
+import 'package:artacho_app/core/config.dart';
 
 class ApiService {
   static final ApiService _instance = ApiService._internal();
@@ -39,7 +39,6 @@ class ApiService {
   Future<void> _setAuthToken() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-    print('🔍 Token guardado en apiservice _setAuthToken : $token');
     if (token != null && token.isNotEmpty) {
       dio.options.headers['Authorization'] = 'Bearer $token';
     } else {

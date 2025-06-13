@@ -11,10 +11,9 @@ class UserService {
         'name': name,
         'email': email,
       });
-      // print('response  200 en updateProfile $name $email');
       return response.statusCode == 200;
     } catch (e) {
-      print('response  false en updateProfile $e');
+      // print('response  false en updateProfile $e');
       return false;
     }
   }

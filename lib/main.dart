@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Hartacho App',
+      title: 'Artacho App',
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: '/',
       routes: {

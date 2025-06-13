@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.hartacho_app"
+    namespace = "org.artacho.app"
     compileSdk = flutter.compileSdkVersion
 
     // ✅ Añadido para forzar NDK requerido por dependencias
@@ -22,7 +22,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.hartacho_app"
+        applicationId = "org.artacho.app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

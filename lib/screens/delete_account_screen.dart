@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hartacho_app/services/user_service.dart';
+import 'package:artacho_app/services/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hartacho_app/widgets/custom_app_bar.dart';
+import 'package:artacho_app/widgets/custom_app_bar.dart';
 
 class DeleteAccountScreen extends StatelessWidget {
   const DeleteAccountScreen({super.key});

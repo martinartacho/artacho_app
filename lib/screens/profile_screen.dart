@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'package:hartacho_app/services/user_service.dart';
-import 'package:hartacho_app/widgets/custom_app_bar.dart';
+import 'package:artacho_app/services/user_service.dart';
+import 'package:artacho_app/widgets/custom_app_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -29,11 +29,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     final prefs = await SharedPreferences.getInstance();
     final userJson = prefs.getString('user');
-    print('User JSON desde SharedPreferences: $userJson');
 
     if (userJson != null) {
       final user = jsonDecode(userJson);
-      print('Decodificado: $user');
+      // print('Decodificado: $user');
       setState(() {
         _nameController.text = user['name'] ?? '';
         _emailController.text = user['email'] ?? '';
@@ -42,12 +41,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _saveProfile() async {
-    print('Estamos en _saveProfile');
-
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     //  print('Token A saveProfile: $token'); // Debug crucial
-    print('🔍 Token guardado en profile_screen saveProfile : $token');
 
     final success = await UserService().updateProfile(
       _nameController.text,

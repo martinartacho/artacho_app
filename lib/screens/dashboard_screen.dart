@@ -42,11 +42,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final prefs = await SharedPreferences.getInstance();
     final userJson = prefs.getString('user');
     final token = prefs.getString('token');
-    print('🔍 Token guardado en dashboard_screen _loadUserData : $token');
 
     if (userJson != null) {
       final user = jsonDecode(userJson);
-      print('Decodificado: $user');
       setState(() {
         userName = user['name'] ?? 'Usuario';
         userEmail = user['email'] ?? 'correo@ejemplo.com';
@@ -89,7 +87,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       context,
       MaterialPageRoute(builder: (context) => const ProfileScreen()),
     );
-    print('🔁 Volviendo del perfil, recargando datos...');
     _loadUserData();
   }
 

@@ -6,9 +6,9 @@
 
 ## 🧩 Proyecto
 
-- **Nombre**: `hartacho_mobile`
-- **Ubicación**: `C:\Users\Harta\flutter_projects\hartacho_mobile`
-- **Backend**: Laravel (`mhartacho.test`)
+- **Nombre**: `artacho_app`
+- **Ubicación**: `C:\...\flutter_projects\artacho_app`
+- **Backend**: Laravel (`artacho.test`)
 - **Autenticación**: JWT
 
 ---
@@ -83,7 +83,7 @@ import 'package:flutter/foundation.dart';
 
 class ApiConfig {
   static String get baseUrl =>
-      kIsWeb ? 'http://mhartacho.test/api' : 'http://10.0.2.2:8000/api';
+      kIsWeb ? 'http://artacho.test/api' : 'http://10.0.2.2:8000/api';
 }
 ```
 
