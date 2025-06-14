@@ -43,7 +43,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       final token = response.data['access_token'];
       final user = response.data['user'];
       final prefs = await SharedPreferences.getInstance();
-      // print('Guardando token: $token');
       await prefs.setString('token', token);
       await prefs.setString('user', jsonEncode(user));
 
