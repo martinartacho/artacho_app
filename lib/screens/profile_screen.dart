@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:artacho_app/services/user_service.dart';
-import 'package:artacho_app/widgets/custom_app_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,14 +24,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _loadUserData() async {
-    print('Estamos en _loadUserData');
-
     final prefs = await SharedPreferences.getInstance();
     final userJson = prefs.getString('user');
 
     if (userJson != null) {
       final user = jsonDecode(userJson);
-      // print('Decodificado: $user');
       setState(() {
         _nameController.text = user['name'] ?? '';
         _emailController.text = user['email'] ?? '';
@@ -41,18 +37,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _saveProfile() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
-    //  print('Token A saveProfile: $token'); // Debug crucial
-
     final success = await UserService().updateProfile(
       _nameController.text,
       _emailController.text,
     );
 
     if (success) {
-      print('Estamos en succes');
-
       final prefs = await SharedPreferences.getInstance();
       final userJson = prefs.getString('user');
       if (userJson != null) {
@@ -66,17 +56,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ).showSnackBar(const SnackBar(content: Text('Perfil actualizado')));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error al actualizar perfil screen')),
+        const SnackBar(content: Text('Error al actualizar perfil')),
       );
     }
   }
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Perfil'),
+      appBar: AppBar(title: const Text('Modificar')),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -85,14 +82,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 controller: _nameController,
                 decoration: const InputDecoration(labelText: 'Nombre'),
               ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(
+                  labelText: 'Correo electrónico',
+                ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: _saveProfile,
-                child: const Text('Guardar'),
+                child: const Text('Guardar cambios'),
               ),
             ],
           ),

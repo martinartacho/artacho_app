@@ -35,7 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (fcmToken != null && fcmToken.isNotEmpty && token != null) {
         final fcmSaved = await _authService.saveFcmToken(fcmToken, token);
-        print(fcmSaved ? '✅ FCM guardado' : '❌ FCM no guardado');
+
+        if (fcmSaved['success'] == true) {
+          print('✅ FCM guardado correctamente');
+        } else {
+          print('❌ FCM no guardado');
+          print(
+            '📋 Detalles: ${fcmSaved['error'] ?? fcmSaved['body'] ?? 'desconocido'}',
+          );
+        }
       }
 
       Navigator.pushReplacement(

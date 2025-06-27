@@ -125,7 +125,7 @@ class ApiConfig {
 ### API
 Esta API está desarrollada en Laravel y utiliza JWT para autenticación. Está desplegada en:
 
-🔗 https://reservas.artacho.org/api
+🔗 https://dev.artacho.org/api
 
 ---
 

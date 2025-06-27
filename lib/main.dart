@@ -13,6 +13,7 @@ import 'screens/dashboard_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/change_screen.dart';
 import 'screens/delete_account_screen.dart';
+import 'screens/notification_screen.dart';
 import 'services/fcm_service.dart';
 import 'core/config.dart';
 import 'dart:async';
@@ -35,7 +36,7 @@ Future<void> requestNotificationPermissions() async {
 // await dotenv.load(fileName: kIsWeb ? "assets/.env" : ".env");
 /* dotenv.testLoad(
         fileInput: '''
-        API_BASE_URL=https://reservas.artacho.org/api
+        API_BASE_URL=https://dev.artacho.org/api
       ''',
       ); */
 void main() {
@@ -46,7 +47,7 @@ void main() {
       await dotenv.load(fileName: "assets/.env");
       print("🌍 API_BASE_URL cargada: ${dotenv.env['API_BASE_URL']}");
       print("🌍 API_BASE_URL_WEB cargada: ${dotenv.env['API_BASE_URL_WEB']}");
-
+      // comentar para disposivo fisico
       if (kIsWeb) {
         if (AppConfig.enableFirebase) {
           await Firebase.initializeApp(
@@ -63,7 +64,17 @@ void main() {
       } else {
         await Firebase.initializeApp();
       }
-
+      // Para dispositivo fisico
+      /*await Firebase.initializeApp(
+        options: FirebaseOptions(
+          apiKey: dotenv.env['FIREBASE_API_KEY']!,
+          authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN'],
+          projectId: dotenv.env['FIREBASE_PROJECT_ID']!,
+          storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'],
+          messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID']!,
+          appId: dotenv.env['FIREBASE_APP_ID']!,
+        ),
+      );*/
       await requestNotificationPermissions();
       FirebaseMessaging.onBackgroundMessage(
         _firebaseMessagingBackgroundHandler,
@@ -101,6 +112,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfileScreen(),
         '/change-password': (context) => const ChangePasswordScreen(),
         '/delete-account': (context) => const DeleteAccountScreen(),
+        '/notifications': (context) => const NotificationsScreen(),
       },
     );
   }
